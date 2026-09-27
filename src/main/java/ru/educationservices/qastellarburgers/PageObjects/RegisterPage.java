@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 import static java.time.Duration.ofSeconds;
 
 public class RegisterPage {
@@ -15,12 +17,19 @@ public class RegisterPage {
         this.driver = driver;
     }
 
-    private static final By REGISTER_HEADER= By.xpath(".//h2[text()='Регистрация']");
-    private static final By REGISTER_NAME = By.xpath(".//label[text() = 'Имя']/../input[contains(@name, 'name')]");
-    private static final By REGISTER_EMAIL = By.xpath(".//label[text() = 'Email']/../input[contains(@name, 'name')]");
-    private static final By REGISTER_PASSWORD = By.xpath(".//label[text() = 'Пароль']/../input[contains(@name, 'Пароль')]");
-    private static final By REGISTER_REGISTER_BUTTON = By.xpath(".//button[text()='Зарегистрироваться']");
-    private static final By REGISTER_ENTER_BUTTON = By.xpath(".//a[text()='Войти']");
+    private static final String REGISTER_PAGE_URL = "https://qa-stellarburgers.education-services.ru/register";
+    private static final By REGISTER_HEADER = By.xpath(".//h2[text()='Регистрация']");
+    private static final By NAME_FIELD = By.xpath(".//label[text() = 'Имя']/../input[contains(@name, 'name')]");
+    private static final By EMAIL_FIELD = By.xpath(".//label[text() = 'Email']/../input[contains(@name, 'name')]");
+    private static final By PASSWORD_FIELD = By.xpath(".//label[text() = 'Пароль']/../input[contains(@name, 'Пароль')]");
+    private static final By REGISTER_BUTTON = By.xpath(".//button[text()='Зарегистрироваться']");
+    private static final By ENTER_BUTTON = By.xpath(".//a[text()='Войти']");
+    private static final By INCORRECT_PASSWORD_ERROR = By.xpath(".//a[text()='Войти']");
+
+    @Step("Открытие страницы регистрации")
+    public void openRegisterPage (){
+        driver.get(REGISTER_PAGE_URL);
+    }
 
     @Step("Ожидание загрузки страницы регистрации")
     public void waitRegisterPageVisibility (){
@@ -29,35 +38,46 @@ public class RegisterPage {
     }
 
     @Step("Ввод имени")
-    public void setRegisterName (String name){
-        driver.findElement(REGISTER_NAME).sendKeys(name);
+    public void setName (String name){
+        driver.findElement(NAME_FIELD).sendKeys(name);
     }
 
     @Step("Ввод email")
-    public void setRegisterEmail (String email){
-        driver.findElement(REGISTER_EMAIL).sendKeys(email);
+    public void setEmail (String email){
+        driver.findElement(EMAIL_FIELD).sendKeys(email);
     }
 
     @Step("Ввод пароля")
-    public void setRegisterPassword (String password){
-        driver.findElement(REGISTER_PASSWORD).sendKeys(password);
+    public void setPassword (String password){
+        driver.findElement(PASSWORD_FIELD).sendKeys(password);
     }
 
     @Step("Клик по кнопке Зарегистрироваться")
-    public void clickRegisterRegisterButton (){
-        driver.findElement(REGISTER_REGISTER_BUTTON).click();
+    public void clickRegisterButton (){
+        driver.findElement(REGISTER_BUTTON).click();
     }
 
     @Step("Клик по кнопке Войти")
-    public void clickLoginRegisterButton (){
-        driver.findElement(REGISTER_ENTER_BUTTON).click();
+    public void clickEnterButton (){
+        driver.findElement(ENTER_BUTTON).click();
     }
 
     @Step("Регистрация пользователя: {name}")
     public void loginUser(String name, String email, String password) {
-        setRegisterName(name);
-        setRegisterEmail(email);
-        setRegisterPassword(password);
-        clickRegisterRegisterButton();
+        setName(name);
+        setEmail(email);
+        setPassword(password);
+        clickRegisterButton();
+    }
+
+    @Step("Проверка видимости ошибки некорректного пароля")
+    public boolean isIncorrectPasswordErrorVisibility (){
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(3))
+                    .until(ExpectedConditions.visibilityOfElementLocated(INCORRECT_PASSWORD_ERROR));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

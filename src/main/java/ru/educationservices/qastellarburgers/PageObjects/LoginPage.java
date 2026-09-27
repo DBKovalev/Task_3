@@ -15,48 +15,59 @@ public class LoginPage {
         this.driver = driver;
     }
 
+
     private static final By LOGIN_HEADER= By.xpath(".//h2[text()='Вход']");
-    private static final By LOGIN_EMAIL = By.xpath(".//label[text() = 'Email']/../input[contains(@name, 'name')]");
-    private static final By LOGIN_PASSWORD = By.xpath(".//label[text() = 'Пароль']/../input[contains(@name, 'Пароль')]");
-    private static final By LOGIN_ENTER_BUTTON = By.xpath(".//button[text()='Войти']");
-    private static final By LOGIN_REGISTER_BUTTON = By.xpath(".//a[text()='Зарегистрироваться']");
-    private static final By LOGIN_RESTORE_PASSWORD_BUTTON = By.xpath(".//a[text()='Восстановить пароль']");
+    private static final By EMAIL_FIELD = By.xpath(".//label[text() = 'Email']/../input[contains(@name, 'name')]");
+    private static final By PASSWORD_FIELD = By.xpath(".//label[text() = 'Пароль']/../input[contains(@name, 'Пароль')]");
+    private static final By ENTER_BUTTON = By.xpath(".//button[text()='Войти']");
+    private static final By REGISTER_BUTTON = By.xpath(".//a[text()='Зарегистрироваться']");
+    private static final By RESTORE_PASSWORD_BUTTON = By.xpath(".//a[text()='Восстановить пароль']");
 
     @Step("Ожидание загрузки страницы входа")
-    public void waitEnterPageVisibility (){
+    public void waitLoginPageVisibility (){
         new WebDriverWait(driver, ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(LOGIN_HEADER));
     }
 
+    @Step("Проверка загрузки страницы входа")
+    public boolean isLoginPageOpened (){
+        try {
+            waitLoginPageVisibility();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     @Step("Ввод email")
-    public void setLoginEmail (String email){
-        driver.findElement(LOGIN_EMAIL).sendKeys(email);
+    public void setEmail (String email){
+        driver.findElement(EMAIL_FIELD).sendKeys(email);
     }
 
     @Step("Ввод пароля")
-    public void setLoginPassword (String password){
-        driver.findElement(LOGIN_PASSWORD).sendKeys(password);
+    public void setPassword (String password){
+        driver.findElement(PASSWORD_FIELD).sendKeys(password);
     }
 
     @Step("Клик по кнопке Войти")
-    public void clickLoginEnterButton (){
-        driver.findElement(LOGIN_ENTER_BUTTON).click();
+    public void clickEnterButton (){
+        driver.findElement(ENTER_BUTTON).click();
     }
 
     @Step("Клик по кнопке Зарегистрироваться")
-    public void clickLoginRegisterButton (){
-        driver.findElement(LOGIN_REGISTER_BUTTON).click();
+    public void clickRegisterButton (){
+        driver.findElement(REGISTER_BUTTON).click();
     }
 
     @Step("Клик по кнопке Восстановить пароль")
-    public void clickLoginRestorePasswordButton (){
-        driver.findElement(LOGIN_RESTORE_PASSWORD_BUTTON).click();
+    public void clickRestorePasswordButton (){
+        driver.findElement(RESTORE_PASSWORD_BUTTON).click();
     }
 
     @Step("Логин пользователя: {email}")
     public void loginUser(String email, String password) {
-        setLoginEmail(email);
-        setLoginPassword(password);
-        clickLoginEnterButton();
+        setEmail(email);
+        setPassword(password);
+        clickEnterButton();
     }
 }

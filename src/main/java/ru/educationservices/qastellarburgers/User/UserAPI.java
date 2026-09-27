@@ -4,15 +4,13 @@ import com.google.gson.Gson;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 
-import static org.hamcrest.Matchers.anyOf;
-import static org.hamcrest.Matchers.equalTo;
-
-public class UserApi {
+public class UserAPI {
 
     private User user;
-
     private static final Gson gson = new Gson();
+    private static final String BASE_URL = "https://qa-stellarburgers.education-services.ru";
 
     public void setUser(User user) {
         this.user = user;
@@ -24,7 +22,7 @@ public class UserApi {
                 .header("Content-type", "application/json")
                 .body(gson.toJson(user))
                 .when()
-                .post("/register");
+                .post(BASE_URL + "/api/auth/register");
     }
 
     @Step("Логин пользователя")
@@ -33,7 +31,7 @@ public class UserApi {
                 .header("Content-type", "application/json")
                 .body(gson.toJson(user))
                 .when()
-                .post("/login");
+                .post(BASE_URL + "/api/auth/login");
     }
 
     @Step("Удалить пользователя по токену")
@@ -45,8 +43,8 @@ public class UserApi {
                 .header("Content-type", "application/json")
                 .header("Authorization", accessToken)
                 .when()
-                .delete("/user")
+                .delete(BASE_URL + "/api/auth/user")
                 .then().assertThat()
-                .statusCode(anyOf(equalTo(200), equalTo(202)));
+                .statusCode(Matchers.anyOf(Matchers.equalTo(200), Matchers.equalTo(202)));
     }
 }

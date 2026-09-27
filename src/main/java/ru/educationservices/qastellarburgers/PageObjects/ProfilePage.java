@@ -17,9 +17,9 @@ public class ProfilePage {
     }
 
     private static final By PROFILE_HEADER = By.xpath(".//button[text()='Профиль']");
-    private static final By PROFILE_CONSTRUCTOR = By.xpath(".//p[text()='Конструктор']");;
-    private static final By PROFILE_LOGO = By.xpath("/div[contains(@class, 'AppHeader_header__logo')]");
-    private static final By PROFILE_EXIT = By.xpath(".//button[text()='Выход']");
+    private static final By CONSTRUCTOR_BUTTON = By.xpath(".//p[text()='Конструктор']");;
+    private static final By LOGO = By.xpath("/div[contains(@class, 'AppHeader_header__logo')]");
+    private static final By EXIT_BUTTON = By.xpath(".//button[text()='Выход']");
 
     @Step("Ожидание загрузки профиля")
     public void waitProfilePageVisibility (){
@@ -28,18 +28,18 @@ public class ProfilePage {
     }
 
     @Step("Клик по кнопке Конструктор")
-    public void clickProfileConstructorButton (){
-        driver.findElement(PROFILE_CONSTRUCTOR).click();
+    public void clickConstructorButton (){
+        driver.findElement(CONSTRUCTOR_BUTTON).click();
     }
 
     @Step("Клик по лого")
-    public void clickProfileLogo (){
-        driver.findElement(PROFILE_LOGO).click();
+    public void clickLogo (){
+        driver.findElement(LOGO).click();
     }
 
     @Step("Клик по кнопке Выход")
-    public void clickProfileExitButton (){
-        driver.findElement(PROFILE_EXIT).click();
+    public void clickExitButton (){
+        driver.findElement(EXIT_BUTTON).click();
     }
 
 }
