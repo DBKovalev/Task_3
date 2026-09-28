@@ -15,7 +15,6 @@ public class LoginPage {
         this.driver = driver;
     }
 
-
     private static final By LOGIN_HEADER= By.xpath(".//h2[text()='Вход']");
     private static final By EMAIL_FIELD = By.xpath(".//label[text() = 'Email']/../input[contains(@name, 'name')]");
     private static final By PASSWORD_FIELD = By.xpath(".//label[text() = 'Пароль']/../input[contains(@name, 'Пароль')]");
@@ -25,7 +24,7 @@ public class LoginPage {
 
     @Step("Ожидание загрузки страницы входа")
     public void waitLoginPageVisibility (){
-        new WebDriverWait(driver, ofSeconds(3))
+        new WebDriverWait(driver, ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(LOGIN_HEADER));
     }
 

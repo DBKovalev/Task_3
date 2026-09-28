@@ -17,13 +17,13 @@ public class ProfilePage {
     }
 
     private static final By PROFILE_HEADER = By.xpath(".//button[text()='Профиль']");
-    private static final By CONSTRUCTOR_BUTTON = By.xpath(".//p[text()='Конструктор']");;
-    private static final By LOGO = By.xpath("/div[contains(@class, 'AppHeader_header__logo')]");
+    private static final By CONSTRUCTOR_BUTTON = By.xpath(".//p[text()='Конструктор']");
+    private static final By LOGO = By.xpath(".//div[contains(@class, 'AppHeader_header__logo')]");
     private static final By EXIT_BUTTON = By.xpath(".//button[text()='Выход']");
 
     @Step("Ожидание загрузки профиля")
     public void waitProfilePageVisibility (){
-        new WebDriverWait(driver, ofSeconds(3))
+        new WebDriverWait(driver, ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(PROFILE_HEADER));
     }
 

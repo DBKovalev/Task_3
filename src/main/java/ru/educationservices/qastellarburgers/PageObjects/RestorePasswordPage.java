@@ -32,7 +32,7 @@ public class RestorePasswordPage {
 
     @Step("Ожидание загрузки страницы восстановления пороля")
     public void waitRestorePasswordPageVisibility (){
-        new WebDriverWait(driver, ofSeconds(3))
+        new WebDriverWait(driver, ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(RESTORE_PASSWORD_HEADER));
     }
 

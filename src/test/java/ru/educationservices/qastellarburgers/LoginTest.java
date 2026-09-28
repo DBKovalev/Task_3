@@ -1,12 +1,7 @@
 package ru.educationservices.qastellarburgers;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import ru.educationservices.qastellarburgers.PageObjects.LoginPage;
 import ru.educationservices.qastellarburgers.PageObjects.MainPage;
 import ru.educationservices.qastellarburgers.PageObjects.RegisterPage;
@@ -25,20 +20,7 @@ public class LoginTest {
 
     @BeforeEach
     void setUp() {
-        WebDriverManager.chromedriver().setup();
-        String browser = System.getProperty("browser", "chrome");
-        if ("yandex".equals(browser)) {
-            String yandexBinary = "C:/Program Files/Yandex/YandexBrowser/Application/browser.exe";
-            WebDriverManager.chromedriver()
-                    .browserVersion("150")
-                    .setup();
-            ChromeOptions options = new ChromeOptions();
-            options.setBinary(yandexBinary);
-            driver = new ChromeDriver(options);
-        } else {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-        }
+        driver = DriverFactory.getDriver();
         userAPI = new UserAPI();
 
         email = UUID.randomUUID() + "@example.com";
@@ -54,7 +36,9 @@ public class LoginTest {
         if (accessToken != null) {
             userAPI.deleteUser(accessToken);
         }
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
     @Test
@@ -73,7 +57,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Вохможен вход через кнопку Личный кабинет")
+    @DisplayName("Возможен вход через кнопку Личный кабинет")
     public void loginFromAccountButtonTest() {
         MainPage mainPage = new MainPage(driver);
         mainPage.openMainPage();
@@ -88,7 +72,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Вохможен вход через кнопку в форме регистрации")
+    @DisplayName("Возможен вход через кнопку в форме регистрации")
     public void loginFromRegisterPageTest() {
         RegisterPage registerPage = new RegisterPage(driver);
         registerPage.openRegisterPage();
@@ -103,7 +87,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Вохможен вход через кнопку в форме восстановления пароля")
+    @DisplayName("Возможен вход через кнопку в форме восстановления пароля")
     public void loginFromRestorePasswordPageTest() {
         RestorePasswordPage restorePasswordPage = new RestorePasswordPage(driver);
         restorePasswordPage.openRestorePasswordPage();

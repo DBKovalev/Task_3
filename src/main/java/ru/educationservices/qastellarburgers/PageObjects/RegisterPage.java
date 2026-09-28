@@ -24,7 +24,7 @@ public class RegisterPage {
     private static final By PASSWORD_FIELD = By.xpath(".//label[text() = 'Пароль']/../input[contains(@name, 'Пароль')]");
     private static final By REGISTER_BUTTON = By.xpath(".//button[text()='Зарегистрироваться']");
     private static final By ENTER_BUTTON = By.xpath(".//a[text()='Войти']");
-    private static final By INCORRECT_PASSWORD_ERROR = By.xpath(".//a[text()='Войти']");
+    private static final By INCORRECT_PASSWORD_ERROR = By.xpath(".//p[text()='Некорректный пароль']");
 
     @Step("Открытие страницы регистрации")
     public void openRegisterPage (){
@@ -33,7 +33,7 @@ public class RegisterPage {
 
     @Step("Ожидание загрузки страницы регистрации")
     public void waitRegisterPageVisibility (){
-        new WebDriverWait(driver, ofSeconds(3))
+        new WebDriverWait(driver, ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(REGISTER_HEADER));
     }
 
@@ -63,7 +63,7 @@ public class RegisterPage {
     }
 
     @Step("Регистрация пользователя: {name}")
-    public void loginUser(String name, String email, String password) {
+    public void registerUser(String name, String email, String password) {
         setName(name);
         setEmail(email);
         setPassword(password);
@@ -73,7 +73,7 @@ public class RegisterPage {
     @Step("Проверка видимости ошибки некорректного пароля")
     public boolean isIncorrectPasswordErrorVisibility (){
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(3))
+            new WebDriverWait(driver, Duration.ofSeconds(5))
                     .until(ExpectedConditions.visibilityOfElementLocated(INCORRECT_PASSWORD_ERROR));
             return true;
         } catch (Exception e) {

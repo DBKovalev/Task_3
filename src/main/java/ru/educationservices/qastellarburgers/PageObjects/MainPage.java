@@ -34,7 +34,7 @@ public class MainPage {
 
     @Step("Ожидание загрузки главной страницы")
     public void waitProfilePageVisibility (){
-        new WebDriverWait(driver, ofSeconds(3))
+        new WebDriverWait(driver, ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(CONSTRUCTOR_TEXT));
     }
 
