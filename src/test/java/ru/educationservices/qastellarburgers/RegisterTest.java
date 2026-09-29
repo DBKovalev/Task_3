@@ -60,7 +60,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("Невозможна регистрация пользователя с невалидным паролем")
-    public void unsuccessfulRegistrationWithInvalidDataTest() {
+    public void unsuccessfulRegistrationWithInvalidPasswordTest() {
         String email = UUID.randomUUID() + "@example.com";
         String name = "TestName";
         String password = "Tp1.";
