@@ -42,7 +42,7 @@ public class RegisterTest {
 
         MainPage mainPage = new MainPage(driver);
         mainPage.openMainPage();
-        mainPage.waitProfilePageVisibility();
+        mainPage.waitMainPageVisibility();
         mainPage.clickEnterButton();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -67,7 +67,7 @@ public class RegisterTest {
 
         MainPage mainPage = new MainPage(driver);
         mainPage.openMainPage();
-        mainPage.waitProfilePageVisibility();
+        mainPage.waitMainPageVisibility();
         mainPage.clickEnterButton();
 
         LoginPage loginPage = new LoginPage(driver);

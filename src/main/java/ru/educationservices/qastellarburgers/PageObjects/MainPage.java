@@ -21,7 +21,7 @@ public class MainPage {
     private static final String MAIN_PAGE_URL = "https://qa-stellarburgers.education-services.ru/";
     private static final By CONSTRUCTOR_TEXT = By.xpath(".//h1[text()='Соберите бургер']");
     private static final By ENTER_BUTTON = By.xpath(".//button[text()='Войти в аккаунт']");
-    private static final By ACCOUNT_BUTTON = By.xpath(".//p[text() = 'Личный Кабинет']");
+    private static final By PROFILE_BUTTON = By.xpath(".//p[text() = 'Личный Кабинет']");
     private static final By BUN_TAB = By.xpath(".//span[text()='Булки']/parent::div");
     private static final By SAUCE_TAB = By.xpath(".//span[text()='Соусы']/parent::div");
     private static final By FILLING_TAB = By.xpath(".//span[text()='Начинки']/parent::div");
@@ -33,9 +33,19 @@ public class MainPage {
     }
 
     @Step("Ожидание загрузки главной страницы")
-    public void waitProfilePageVisibility (){
+    public void waitMainPageVisibility(){
         new WebDriverWait(driver, ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(CONSTRUCTOR_TEXT));
+    }
+
+    @Step("Проверка загрузки главной страницы")
+    public boolean isMainPageOpened(){
+        try {
+            waitMainPageVisibility();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Step("Клик по кнопке Войти в аккаунт")
@@ -44,8 +54,8 @@ public class MainPage {
     }
 
     @Step("Клик по кнопке Личный кабинет")
-    public void clickAccountButton (){
-        driver.findElement(ACCOUNT_BUTTON).click();
+    public void clickProfileButton(){
+        driver.findElement(PROFILE_BUTTON).click();
     }
 
     @Step("Клик по табу Булки")

@@ -16,7 +16,7 @@ public class ProfilePage {
         this.driver = driver;
     }
 
-    private static final By PROFILE_HEADER = By.xpath(".//button[text()='Профиль']");
+    private static final By PROFILE_HEADER = By.xpath(".//a[text()='Профиль']");
     private static final By CONSTRUCTOR_BUTTON = By.xpath(".//p[text()='Конструктор']");
     private static final By LOGO = By.xpath(".//div[contains(@class, 'AppHeader_header__logo')]");
     private static final By EXIT_BUTTON = By.xpath(".//button[text()='Выход']");
@@ -25,6 +25,16 @@ public class ProfilePage {
     public void waitProfilePageVisibility (){
         new WebDriverWait(driver, ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(PROFILE_HEADER));
+    }
+
+    @Step("Проверка загрузки профиля")
+    public boolean isProfilePageOpened (){
+        try {
+            waitProfilePageVisibility();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Step("Клик по кнопке Конструктор")

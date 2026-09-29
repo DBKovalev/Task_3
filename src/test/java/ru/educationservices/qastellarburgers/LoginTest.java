@@ -43,10 +43,10 @@ public class LoginTest {
 
     @Test
     @DisplayName("Возможен вход по кнопке Войти в аккаунт на главной странице")
-    public void loginFromMainPageEnterButtonTest() {
+    public void loginByEnterButtonTest() {
         MainPage mainPage = new MainPage(driver);
         mainPage.openMainPage();
-        mainPage.waitProfilePageVisibility();
+        mainPage.waitMainPageVisibility();
         mainPage.clickEnterButton();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -57,12 +57,12 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Возможен вход через кнопку Личный кабинет")
-    public void loginFromAccountButtonTest() {
+    @DisplayName("Возможен вход через кнопку Личный Кабинет")
+    public void loginByProfileButtonTest() {
         MainPage mainPage = new MainPage(driver);
         mainPage.openMainPage();
-        mainPage.waitProfilePageVisibility();
-        mainPage.clickAccountButton();
+        mainPage.waitMainPageVisibility();
+        mainPage.clickProfileButton();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.waitLoginPageVisibility();
