@@ -13,6 +13,7 @@ import static java.time.Duration.ofSeconds;
 public class RegisterPage {
 
     private final WebDriver driver;
+
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -27,38 +28,38 @@ public class RegisterPage {
     private static final By INCORRECT_PASSWORD_ERROR = By.xpath(".//p[text()='Некорректный пароль']");
 
     @Step("Открытие страницы регистрации")
-    public void openRegisterPage (){
+    public void openRegisterPage() {
         driver.get(REGISTER_PAGE_URL);
     }
 
     @Step("Ожидание загрузки страницы регистрации")
-    public void waitRegisterPageVisibility (){
-        new WebDriverWait(driver, ofSeconds(5))
+    public void waitRegisterPageVisibility() {
+        new WebDriverWait(driver, ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(REGISTER_HEADER));
     }
 
     @Step("Ввод имени")
-    public void setName (String name){
+    public void setName(String name) {
         driver.findElement(NAME_FIELD).sendKeys(name);
     }
 
     @Step("Ввод email")
-    public void setEmail (String email){
+    public void setEmail(String email) {
         driver.findElement(EMAIL_FIELD).sendKeys(email);
     }
 
     @Step("Ввод пароля")
-    public void setPassword (String password){
+    public void setPassword(String password) {
         driver.findElement(PASSWORD_FIELD).sendKeys(password);
     }
 
     @Step("Клик по кнопке Зарегистрироваться")
-    public void clickRegisterButton (){
+    public void clickRegisterButton() {
         driver.findElement(REGISTER_BUTTON).click();
     }
 
     @Step("Клик по кнопке Войти")
-    public void clickEnterButton (){
+    public void clickEnterButton() {
         driver.findElement(ENTER_BUTTON).click();
     }
 
@@ -71,9 +72,9 @@ public class RegisterPage {
     }
 
     @Step("Проверка видимости ошибки некорректного пароля")
-    public boolean isIncorrectPasswordErrorVisibility (){
+    public boolean isIncorrectPasswordErrorVisible() {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(5))
+            new WebDriverWait(driver, Duration.ofSeconds(10))
                     .until(ExpectedConditions.visibilityOfElementLocated(INCORRECT_PASSWORD_ERROR));
             return true;
         } catch (Exception e) {

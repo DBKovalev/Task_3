@@ -33,7 +33,7 @@ public class RegisterTest {
     }
 
     @Test
-    @DisplayName("Пользователь может зарегистрироваться с валидными данными")
+    @DisplayName("Возможна регистрация пользователя с валидными данными")
     public void successfulRegistrationWithValidDataTest() {
         String email = UUID.randomUUID() + "@example.com";
         String name = "TestName";
@@ -59,7 +59,7 @@ public class RegisterTest {
     }
 
     @Test
-    @DisplayName("Пользователь не может зарегистрироваться невалидным паролем")
+    @DisplayName("Невозможна регистрация пользователя с невалидным паролем")
     public void unsuccessfulRegistrationWithInvalidDataTest() {
         String email = UUID.randomUUID() + "@example.com";
         String name = "TestName";
@@ -78,6 +78,6 @@ public class RegisterTest {
         registerPage.waitRegisterPageVisibility();
         registerPage.registerUser(name, email, password);
 
-        Assertions.assertTrue(registerPage.isIncorrectPasswordErrorVisibility());
+        Assertions.assertTrue(registerPage.isIncorrectPasswordErrorVisible());
     }
 }

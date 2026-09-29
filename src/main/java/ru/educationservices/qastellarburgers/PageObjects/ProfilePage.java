@@ -22,13 +22,13 @@ public class ProfilePage {
     private static final By EXIT_BUTTON = By.xpath(".//button[text()='Выход']");
 
     @Step("Ожидание загрузки профиля")
-    public void waitProfilePageVisibility (){
-        new WebDriverWait(driver, ofSeconds(5))
+    public void waitProfilePageVisibility() {
+        new WebDriverWait(driver, ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(PROFILE_HEADER));
     }
 
     @Step("Проверка загрузки профиля")
-    public boolean isProfilePageOpened (){
+    public boolean isProfilePageOpened() {
         try {
             waitProfilePageVisibility();
             return true;
@@ -38,17 +38,17 @@ public class ProfilePage {
     }
 
     @Step("Клик по кнопке Конструктор")
-    public void clickConstructorButton (){
+    public void clickConstructorButton() {
         driver.findElement(CONSTRUCTOR_BUTTON).click();
     }
 
     @Step("Клик по лого")
-    public void clickLogo (){
+    public void clickLogo() {
         driver.findElement(LOGO).click();
     }
 
     @Step("Клик по кнопке Выход")
-    public void clickExitButton (){
+    public void clickExitButton() {
         driver.findElement(EXIT_BUTTON).click();
     }
 

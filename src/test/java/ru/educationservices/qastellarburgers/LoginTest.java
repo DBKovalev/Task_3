@@ -53,7 +53,7 @@ public class LoginTest {
         loginPage.waitLoginPageVisibility();
         loginPage.loginUser(email, password);
 
-        Assertions.assertTrue(mainPage.isCreateOrderButtonVisibility());
+        Assertions.assertTrue(mainPage.isCreateOrderButtonVisible());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class LoginTest {
         loginPage.waitLoginPageVisibility();
         loginPage.loginUser(email, password);
 
-        Assertions.assertTrue(mainPage.isCreateOrderButtonVisibility());
+        Assertions.assertTrue(mainPage.isCreateOrderButtonVisible());
     }
 
     @Test
@@ -76,6 +76,7 @@ public class LoginTest {
     public void loginFromRegisterPageTest() {
         RegisterPage registerPage = new RegisterPage(driver);
         registerPage.openRegisterPage();
+        registerPage.waitRegisterPageVisibility();
         registerPage.clickEnterButton();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -83,7 +84,7 @@ public class LoginTest {
         loginPage.loginUser(email, password);
 
         MainPage mainPage = new MainPage(driver);
-        Assertions.assertTrue(mainPage.isCreateOrderButtonVisibility());
+        Assertions.assertTrue(mainPage.isCreateOrderButtonVisible());
     }
 
     @Test
@@ -99,6 +100,6 @@ public class LoginTest {
         loginPage.loginUser(email, password);
 
         MainPage mainPage = new MainPage(driver);
-        Assertions.assertTrue(mainPage.isCreateOrderButtonVisibility());
+        Assertions.assertTrue(mainPage.isCreateOrderButtonVisible());
     }
 }
