@@ -1,4 +1,4 @@
-package ru.educationservices.qastellarburgers.User;
+package ru.educationservices.qastellarburgers.user;
 
 import com.google.gson.Gson;
 import io.qameta.allure.Step;

@@ -2,7 +2,7 @@ package ru.educationservices.qastellarburgers;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import ru.educationservices.qastellarburgers.PageObjects.*;
+import ru.educationservices.qastellarburgers.pageobjects.*;
 
 public class MainPageTest {
 

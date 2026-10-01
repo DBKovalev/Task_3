@@ -2,9 +2,9 @@ package ru.educationservices.qastellarburgers;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import ru.educationservices.qastellarburgers.PageObjects.*;
-import ru.educationservices.qastellarburgers.User.User;
-import ru.educationservices.qastellarburgers.User.UserAPI;
+import ru.educationservices.qastellarburgers.pageobjects.*;
+import ru.educationservices.qastellarburgers.user.User;
+import ru.educationservices.qastellarburgers.user.UserAPI;
 
 import java.util.UUID;
 

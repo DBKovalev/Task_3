@@ -1,4 +1,4 @@
-package ru.educationservices.qastellarburgers.PageObjects;
+package ru.educationservices.qastellarburgers.pageobjects;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;

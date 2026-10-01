@@ -1,4 +1,4 @@
-package ru.educationservices.qastellarburgers.User;
+package ru.educationservices.qastellarburgers.user;
 
 public class User {
     private String email;

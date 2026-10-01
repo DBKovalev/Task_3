@@ -2,11 +2,11 @@ package ru.educationservices.qastellarburgers;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import ru.educationservices.qastellarburgers.PageObjects.LoginPage;
-import ru.educationservices.qastellarburgers.PageObjects.MainPage;
-import ru.educationservices.qastellarburgers.PageObjects.RegisterPage;
-import ru.educationservices.qastellarburgers.User.User;
-import ru.educationservices.qastellarburgers.User.UserAPI;
+import ru.educationservices.qastellarburgers.pageobjects.LoginPage;
+import ru.educationservices.qastellarburgers.pageobjects.MainPage;
+import ru.educationservices.qastellarburgers.pageobjects.RegisterPage;
+import ru.educationservices.qastellarburgers.user.User;
+import ru.educationservices.qastellarburgers.user.UserAPI;
 
 import java.util.UUID;
 
